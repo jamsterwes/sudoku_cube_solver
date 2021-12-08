@@ -22,21 +22,11 @@ int main()
     printf("\n\n");
 
     // Up-CCW
-    cube = move(cube, RotationType::UP_CCW);
 
-    print(cube);
-
-    printf("\n\n");
-
-    // Left-CW
-    cube = move(cube, RotationType::LEFT_CW);
-
-    print(cube);
-
-    printf("\n\n");
-
-    // Front-CW
-    cube = move(cube, RotationType::FRONT_CW);
+    for (size_t i = 0; i < 100000000; ++i)
+    {
+        cube = move(cube, RotationType::UP_CCW);
+    }
 
     print(cube);
 
