@@ -1,0 +1,34 @@
+// x0: acuwljqs
+// x1: bdvxkirt
+
+// y0: abefijmn
+// y1: cdghklop
+
+// z0: qrfhxwom
+// z1: stegvupn
+
+/*
+    FRONT:
+    A B
+    C D
+
+    RIGHT:
+    E F
+    G H
+
+    BACK:
+    I J
+    K L
+
+    LEFT:
+    M N
+    O P
+
+    UP:
+    Q R
+    S T
+
+    DOWN:
+    U V
+    W X
+*/
