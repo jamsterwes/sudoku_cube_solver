@@ -23,6 +23,7 @@ int main()
 
     // Up-CCW
 
+    // TODO: make RingSet usage more efficient
     for (size_t i = 0; i < 100000000; ++i)
     {
         cube = move(cube, RotationType::UP_CCW);

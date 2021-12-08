@@ -41,6 +41,16 @@ char idx(Ring ring, int index)
     return (ring >> ((7 - index) * 4)) & 0xF;
 }
 
+RingSet make_ringset(std::initializer_list<char> vals)
+{
+    RingSet out = 0;
+    for (char val : vals)
+    {
+        insert(out, val);
+    }
+    return out;
+}
+
 Ring make_ring(std::initializer_list<char> vals)
 {
     Ring out = 0;
@@ -52,10 +62,10 @@ Ring make_ring(std::initializer_list<char> vals)
     return out;
 }
 
-// bool solved(Cube cube)
-// {
-//     return solved(cube.sx0) && solved(cube.sx1) && solved(cube.sy0) && solved(cube.sy1) && solved(cube.sz0) && solved(cube.sz1);
-// }
+bool solved(Cube cube)
+{
+    return solved(cube.sx0) && solved(cube.sx1) && solved(cube.sy0) && solved(cube.sy1) && solved(cube.sz0) && solved(cube.sz1);
+}
 
 // Ring updates
 
@@ -68,6 +78,12 @@ Cube update_x(Cube cube)
         cube.front.tl, cube.front.bl, cube.down.tl, cube.down.bl, cube.back.br, cube.back.tr, cube.up.tl, cube.up.bl
     });
     newCube.x1 = make_ring({
+        cube.front.tr, cube.front.br, cube.down.tr, cube.down.br, cube.back.bl, cube.back.tl, cube.up.tr, cube.up.br
+    });
+    newCube.sx0 = make_ringset({
+        cube.front.tl, cube.front.bl, cube.down.tl, cube.down.bl, cube.back.br, cube.back.tr, cube.up.tl, cube.up.bl
+    });
+    newCube.sx1 = make_ringset({
         cube.front.tr, cube.front.br, cube.down.tr, cube.down.br, cube.back.bl, cube.back.tl, cube.up.tr, cube.up.br
     });
 
@@ -85,6 +101,12 @@ Cube update_y(Cube cube)
     newCube.y1 = make_ring({
         cube.front.bl, cube.front.br, cube.right.bl, cube.right.br, cube.back.bl, cube.back.br, cube.left.bl, cube.left.br
     });
+    newCube.sy0 = make_ringset({
+        cube.front.tl, cube.front.tr, cube.right.tl, cube.right.tr, cube.back.tl, cube.back.tr, cube.left.tl, cube.left.tr
+    });
+    newCube.sy1 = make_ringset({
+        cube.front.bl, cube.front.br, cube.right.bl, cube.right.br, cube.back.bl, cube.back.br, cube.left.bl, cube.left.br
+    });
 
     return newCube;
 }
@@ -98,6 +120,12 @@ Cube update_z(Cube cube)
         cube.up.tl, cube.up.tr, cube.right.tr, cube.right.br, cube.down.br, cube.down.bl, cube.left.bl, cube.left.tl
     });
     newCube.z1 = make_ring({
+        cube.up.bl, cube.up.br, cube.right.tl, cube.right.bl, cube.down.tr, cube.down.tl, cube.left.br, cube.left.tr
+    });
+    newCube.sz0 = make_ringset({
+        cube.up.tl, cube.up.tr, cube.right.tr, cube.right.br, cube.down.br, cube.down.bl, cube.left.bl, cube.left.tl
+    });
+    newCube.sz1 = make_ringset({
         cube.up.bl, cube.up.br, cube.right.tl, cube.right.bl, cube.down.tr, cube.down.tl, cube.left.br, cube.left.tr
     });
 

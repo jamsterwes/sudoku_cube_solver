@@ -35,7 +35,7 @@ struct Cube
 {
     Face up, down, left, right, front, back;
     Ring x0=0, x1=0, y0=0, y1=0, z0=0, z1=0;
-    // TODO: RingSet sx0, sx1, sy0, sy1, sz0, sz1;
+    RingSet sx0, sx1, sy0, sy1, sz0, sz1;
 };
 
 Ring make_ring(std::initializer_list<char> vals);
@@ -52,5 +52,5 @@ Cube update_y(Cube cube);
 Cube update_z(Cube cube);
 
 Cube move(Cube cube, RotationType type);
-// bool solved(Cube cube);
+bool solved(Cube cube);
 void print(Cube cube);
