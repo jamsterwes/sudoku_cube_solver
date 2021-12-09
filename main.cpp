@@ -1,6 +1,6 @@
 #include "data/RingSet.h"
 #include "data/Cube.h"
-#include "solving/BruteSolver.h"
+#include "solving/DiffSolver.h"
 #include <cstdio>
 #include <iostream>
 
@@ -24,7 +24,7 @@ int main()
     printf("\n\n");
     
     // SOLVER
-    BruteSolver solver{};
+    DiffSolver solver = DiffSolver();
     auto moves = solver.solve(cube);
 
     // Print done

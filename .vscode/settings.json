@@ -27,6 +27,8 @@
         "forward_list": "cpp",
         "queue": "cpp",
         "deque": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "algorithm": "cpp",
+        "iostream": "cpp"
     }
 }
