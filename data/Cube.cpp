@@ -2,6 +2,7 @@
 #include <cassert>
 #include <cstdio>
 
+
 Ring ror(Ring ring)
 {
     // need rotation, not just truncated shift
@@ -60,6 +61,26 @@ Ring make_ring(std::initializer_list<char> vals)
         out |= (val & 0xF);
     }
     return out;
+}
+
+bool operator<(Cube a, Cube b)
+{
+    if (a.x0 != b.x0) return (a.x0 < b.x0);
+    else if (a.x1 != b.x1) return (a.x1 < b.x1);
+    else if (a.y0 != b.y0) return (a.y0 < b.y0);
+    else if (a.y1 != b.y1) return (a.y1 < b.y1);
+    else if (a.z0 != b.z0) return (a.z0 < b.z0);
+    else return (a.z1 < b.z1);
+}
+
+bool operator==(Cube a, Cube b)
+{
+    if (a.x0 != b.x0) return false;
+    else if (a.x1 != b.x1) return false;
+    else if (a.y0 != b.y0) return false;
+    else if (a.y1 != b.y1) return false;
+    else if (a.z0 != b.z0) return false;
+    else return a.z0 == b.z0;
 }
 
 bool solved(Cube cube)

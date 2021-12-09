@@ -1,6 +1,8 @@
-#include "RingSet.h"
-#include "Cube.h"
+#include "data/RingSet.h"
+#include "data/Cube.h"
+#include "solving/BruteSolver.h"
 #include <cstdio>
+#include <iostream>
 
 int main()
 {
@@ -20,16 +22,13 @@ int main()
     print(cube);
 
     printf("\n\n");
+    
+    // SOLVER
+    BruteSolver solver{};
+    auto moves = solver.solve(cube);
 
-    // Up-CCW
-
-    // TODO: make RingSet usage more efficient
-    for (size_t i = 0; i < 100000000; ++i)
-    {
-        cube = move(cube, RotationType::UP_CCW);
-    }
-
-    print(cube);
+    // Print done
+    std::cout << "Done!" << std::endl;
 
     return 0;
 }

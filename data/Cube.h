@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <initializer_list>
 #include "RingSet.h"
+#include "../Utilities.h"
 
 // Store the values in the ring (in order)
 // 4bits per value (32bits total) - value from 0 to 7 (maps to 1 to 8)
@@ -16,7 +17,7 @@ char idx(Ring ring, int index);
 // Move type
 enum class RotationType : uint8_t
 {
-    LEFT_CW, LEFT_CCW,
+    LEFT_CW = 0, LEFT_CCW,
     RIGHT_CW, RIGHT_CCW,
     UP_CW, UP_CCW,
     DOWN_CW, DOWN_CCW,
@@ -38,6 +39,9 @@ struct Cube
     RingSet sx0, sx1, sy0, sy1, sz0, sz1;
 };
 
+bool operator<(Cube a, Cube b);
+bool operator==(Cube a, Cube b);
+
 Ring make_ring(std::initializer_list<char> vals);
 
 Cube from_x0(Cube cube);
@@ -54,3 +58,19 @@ Cube update_z(Cube cube);
 Cube move(Cube cube, RotationType type);
 bool solved(Cube cube);
 void print(Cube cube);
+
+// Hashable Cube
+template<>
+struct std::hash<Cube>
+{
+    size_t operator()(Cube const& cube) const noexcept
+    {
+        size_t h = std::hash<Ring>{}(cube.x0);
+        hash_combine(h, cube.x1);
+        hash_combine(h, cube.y0);
+        hash_combine(h, cube.y1);
+        hash_combine(h, cube.z0);
+        hash_combine(h, cube.z1);
+        return h;
+    }
+};
